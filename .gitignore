@@ -1,3 +1,4 @@
+.env.development
 log
 tmp
 node_modules

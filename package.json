@@ -19,6 +19,11 @@
   },
   "homepage": "https://github.com/gatorsix/lowdown",
   "dependencies": {
-    "koa-static": "^1.4.5"
+    "dotenv": "^0.2.8",
+    "koa-passport": "^0.4.0",
+    "koa-router": "^3.1.4",
+    "koa-sess": "^0.3.3",
+    "koa-static": "^1.4.5",
+    "passport-github": "^0.1.5"
   }
 }
