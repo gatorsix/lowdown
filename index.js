@@ -2,9 +2,9 @@ var dotenv = require('dotenv');
 dotenv.load();
 
 var koa = require('koa');
-var serve = require('koa-static');
+var mount = require('koa-mount');
 var session = require('koa-sess');
-
+var serve = require('koa-static');
 
 var server = koa();
 server.keys = [process.env.SECRET_KEY];
@@ -23,36 +23,16 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-var Router = require('koa-router');
-var app = new Router();
-
-app.get('/login', passport.authenticate('github'));
-app.get('/logout', function *() {
-  this.logout();
-  this.redirect('/');
+var path = require('path');
+var render = require('koa-ejs');
+render(server, {
+  root: path.join(__dirname, 'app'),
+  layout: false,
+  viewExt: 'html.ejs',
+  cache: true
 });
 
-app.get('/auth/github/callback', passport.authenticate('github', {
-  successRedirect: '/',
-  failureRedirect: '/fail'
-}));
-
-app.get('/fail', function *() {
-  this.body = 'ONOES! Auth has failed!';
-});
-
-app.get('/', function *(next) {
-  if(!Object.keys(this.session.passport).length) return yield next;
-  var user = this.session.passport.user;
-  this.body = 'RENDER THE APP: ' + user.displayName;
-});
-
-server.use(app.middleware());
-
+server.use(mount('/', require('./app')));
 server.use(serve('public'));
-
-server.on('error', function(err){
-  console.trace(err);
-});
 
 server.listen(3000);
