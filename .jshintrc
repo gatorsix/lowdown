@@ -1,0 +1,9 @@
+{
+  "node": true,
+  "browser": true,
+  "esnext": true,
+  "quotmark": "single",
+  "strict": true,
+  "trailing": true,
+  "smarttabs": true
+}
