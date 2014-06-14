@@ -1,0 +1,21 @@
+{
+  "name": "lowdown",
+  "version": "0.0.0",
+  "description": "Deployment notifications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --harmony index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatorsix/lowdown.git"
+  },
+  "author": "Derek Lindahl",
+  "license": "NONE",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/gatorsix/lowdown/issues"
+  },
+  "homepage": "https://github.com/gatorsix/lowdown"
+}
