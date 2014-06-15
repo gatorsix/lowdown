@@ -15,12 +15,12 @@ require('./auth/github');
 server.use(passport.initialize());
 server.use(passport.session());
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
+passport.serializeUser(function(github, done) {
+  done(null, github);
 });
 
-passport.deserializeUser(function(user, done) {
-  done(null, user);
+passport.deserializeUser(function(github, done) {
+  done(null, github);
 });
 
 var path = require('path');
@@ -34,5 +34,8 @@ render(server, {
 
 server.use(mount('/', require('./app')));
 server.use(serve('public'));
+
+// tmp
+server.use(serve('node_modules'));
 
 server.listen(3000);

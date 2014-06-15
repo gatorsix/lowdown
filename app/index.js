@@ -22,8 +22,8 @@ route.get('/fail', function *() {
 
 route.get('/', function *(next) {
   if(!Object.keys(this.session.passport).length) return yield next;
-  var user = this.session.passport.user;
-  yield this.render('index', { user:user });
+  var github = this.session.passport.user;
+  yield this.render('index', github);
 });
 
 app.use(route.middleware());

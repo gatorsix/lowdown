@@ -1,6 +1,14 @@
 <html>
+  <head>
+  </head>
   <body>
     <h1>Lowdown</h1>
-    <h2>Hello, <%= user.displayName %>!</h2>
+    <h2>Hello, <%= profile.displayName %>!</h2>
+
+    <script>
+      var TOKEN = '<%- accessToken %>';
+    </script>
+    <script src="/octokit/octokit.js"></script>
+    <script src="/wip.js"></script>
   </body>
 </html>

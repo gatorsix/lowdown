@@ -10,7 +10,7 @@ var opts = {
 
 passport.use(new GitHubStrategy(opts, function(accessToken, refreshToken, profile, done) {
   console.log('[GitHub] accessToken: %s refreshToken:%s', accessToken, refreshToken);
-  return done(null, profile);
+  return done(null, {accessToken:accessToken, profile:profile});
   // User.findOrCreate({ githubId: profile.id }, function (err, user) {
   //   return done(err, user);
   // });
