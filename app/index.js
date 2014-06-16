@@ -1,5 +1,6 @@
 var koa = require('koa');
 var passport = require('koa-passport');
+var serve = require('koa-static');
 var Router = require('koa-router');
 
 var app = koa();
@@ -27,5 +28,6 @@ route.get('/', function *(next) {
 });
 
 app.use(route.middleware());
+app.use(serve('app/assets'));
 
 module.exports = app;

@@ -5,10 +5,12 @@
     <h1>Lowdown</h1>
     <h2>Hello, <%= profile.displayName %>!</h2>
 
+    <div id="ui"></div>
+
     <script>
       var TOKEN = '<%- accessToken %>';
     </script>
     <script src="/octokit/octokit.js"></script>
-    <script src="/wip.js"></script>
+    <script src="/javascripts/ui-bundle.js"></script>
   </body>
 </html>
