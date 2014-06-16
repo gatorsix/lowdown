@@ -3,11 +3,14 @@
 
 var React = require('react');
 
+var ReposMixin = require('../mixins/repos.js');
+var OrgsMixin = require('../mixins/orgs.js');
 
 var App = React.createClass({
   propTypes: {
     user: React.PropTypes.object.isRequired
   },
+  mixins: [OrgsMixin, ReposMixin],
   render: function() {
     return (
       <div>
