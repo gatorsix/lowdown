@@ -19,14 +19,11 @@ var Routing = {
     var app = this;
     var routes = {
       '/': function() {
-        app.setState({
-          currentOrg: app.getInitialState().currentOrg
-        });
-
         var defaultOrg = app.state.orgs[0].login;
         var path = '/orgs/'+defaultOrg+'/repos';
 
         function redirect() {
+          // TODO: this should "replace state"
           app.props.router.setRoute(path);
         }
 

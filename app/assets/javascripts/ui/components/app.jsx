@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 'use strict';
 
-var React = require('react');
+var React = require('react/addons');
 
 var ReposMixin = require('../mixins/repos.js');
 var OrgsMixin = require('../mixins/orgs.js');
@@ -42,6 +42,7 @@ var App = React.createClass({
         </ul>
 
         <h3>Repos</h3>
+        <div>{this.state.repos.length}</div>
         <ul>
           {this.state.repos.map(function(repo) {
             return <li key={repo.id}>{repo.name}</li>

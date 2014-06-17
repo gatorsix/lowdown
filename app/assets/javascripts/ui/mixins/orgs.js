@@ -16,17 +16,16 @@ var Orgs = {
       orgs: []
     };
   },
-  handleOrgRetrieval: function(result) {
-    var profile = result[0];
-    var orgs = result[1];
-    orgs.unshift(profileAsOrg(profile));
-    this.setState({ orgs:orgs })
+  handleOrgRetrieval: function(orgs) {
+    orgs.unshift(profileAsOrg(this.props.user));
+    this.setState({ orgs:orgs });
   },
   componentWillMount: function() {
-    when.all([
-      this.props.user.getInfo(),
-      this.props.user.getOrgs()
-    ]).then(this.handleOrgRetrieval);
+    this.props.github
+      .me
+      .orgs
+      .fetch()
+      .then(this.handleOrgRetrieval);
   }
 };
 

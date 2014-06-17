@@ -1,16 +1,16 @@
 'use strict';
 
-var React = require('react');
+var React = require('react/addons');
 
 var App = require('./ui/components/app.jsx');
 
-var gh = new Octokit({
+var gh = new Octokat({
   token: window.TOKEN
 });
 
-var user = gh.getUser();
-
-React.renderComponent(
-  App({ user:user }),
-  document.getElementById('ui')
-);
+var user = gh.me.fetch().then(function(user) {
+  React.renderComponent(
+    App({ user:user, github:gh }),
+    document.getElementById('ui')
+  );
+});

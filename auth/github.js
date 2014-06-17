@@ -5,7 +5,7 @@ var opts = {
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
   callbackURL: 'http://localhost:3000/auth/github/callback',
-  scope: 'user:email, repo:status, read:org'
+  scope: 'user:email, repo, read:org'
 };
 
 passport.use(new GitHubStrategy(opts, function(accessToken, refreshToken, profile, done) {

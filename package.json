@@ -31,7 +31,7 @@
     "koa-sess": "^0.3.3",
     "koa-static": "^1.4.5",
     "lodash": "^2.4.1",
-    "octokit": "^0.10.1",
+    "octokat": "philschatz/octokat.js#a51b1d77ab3d228fb611a87ef92cabdf2ec476ce",
     "passport-github": "^0.1.5",
     "react": "^0.10.0",
     "react-async": "^0.9.4",
