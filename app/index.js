@@ -21,13 +21,14 @@ route.get('/fail', function *() {
   this.body = 'ONOES! Auth has failed!';
 });
 
-route.get('/', function *(next) {
+app.use(serve('app/assets'));
+
+route.get('/*', function *(next) {
   if(!Object.keys(this.session.passport).length) return yield next;
   var github = this.session.passport.user;
   yield this.render('index', github);
 });
 
 app.use(route.middleware());
-app.use(serve('app/assets'));
 
 module.exports = app;
