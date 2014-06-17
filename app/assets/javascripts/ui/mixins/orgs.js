@@ -20,7 +20,6 @@ var Orgs = {
     var profile = result[0];
     var orgs = result[1];
     orgs.unshift(profileAsOrg(profile));
-
     this.setState({ orgs:orgs })
   },
   componentWillMount: function() {
@@ -28,7 +27,7 @@ var Orgs = {
       this.props.user.getInfo(),
       this.props.user.getOrgs()
     ]).then(this.handleOrgRetrieval);
-  },
+  }
 };
 
 module.exports = Orgs;
