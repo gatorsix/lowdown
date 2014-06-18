@@ -1,5 +1,6 @@
 'use strict';
 
+require('octokat/dist/octokat');
 var React = require('react/addons');
 
 var App = require('./ui/components/app.jsx');

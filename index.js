@@ -34,9 +34,6 @@ render(server, {
   cache: true
 });
 
-// tmp
-server.use(mount('/vendor', serve('node_modules')));
-
 server.use(mount('/', require('./app')));
 server.use(serve('public'));
 
