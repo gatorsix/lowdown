@@ -24,7 +24,10 @@ route.get('/fail', function *() {
 app.use(serve('app/assets'));
 
 route.get('/*', function *(next) {
-  if(!Object.keys(this.session.passport).length) return yield next;
+  if(!Object.keys(this.session.passport).length) {
+    if(this.request.url === '/') return yield next;
+    return this.redirect('/');
+  }
   var github = this.session.passport.user;
   yield this.render('index', github);
 });
