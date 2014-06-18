@@ -38,7 +38,7 @@ var App = React.createClass({
                 <a href={'/orgs/'+org.login+'/repos'}>{org.login}</a>
               </li>
             );
-          }.bind(this))}
+          })}
         </ul>
 
         <h3>Repos</h3>
