@@ -4,6 +4,8 @@ var serve = require('koa-static');
 var Router = require('koa-router');
 
 var app = koa();
+app.use(serve('app/assets'));
+
 var route = new Router();
 
 route.get('/login', passport.authenticate('github'));
@@ -20,8 +22,6 @@ route.get('/auth/github/callback', passport.authenticate('github', {
 route.get('/fail', function *() {
   this.body = 'ONOES! Auth has failed!';
 });
-
-app.use(serve('app/assets'));
 
 route.get('/*', function *(next) {
   if(!Object.keys(this.session.passport).length) {
