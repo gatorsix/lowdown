@@ -2,11 +2,13 @@ var dotenv = require('dotenv');
 dotenv.load();
 
 var koa = require('koa');
+var logger = require('koa-logger');
 var mount = require('koa-mount');
 var session = require('koa-sess');
 var serve = require('koa-static');
 
 var server = koa();
+server.use(logger());
 server.keys = [process.env.SECRET_KEY];
 server.use(session());
 
