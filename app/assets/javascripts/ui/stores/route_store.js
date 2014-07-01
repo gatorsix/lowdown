@@ -4,6 +4,14 @@ var Fluxxor = require('fluxxor');
 var director = require('director');
 var emptyObj = require('react/lib/emptyObject');
 
+// Fluxxor doesn't want to trigger an action while processing another,
+// so let's call it asynchronously.
+function rafAction(store, actionName, args) {
+  window.requestAnimationFrame(function() {
+    store.flux.actions[actionName].apply(store, args);
+  });
+}
+
 var RouteStore = Fluxxor.createStore({
   actions: {
     ROUTER_INIT: 'initRouter',
@@ -60,22 +68,12 @@ var RouteStore = Fluxxor.createStore({
     this.emit('change');
   },
   __root: function() {
-    var store = this;
-    store.__updateState();
-    // Fluxxor doesn't want to trigger an action while processing another,
-    // so let's call it asynchronously.
-    window.requestAnimationFrame(function() {
-      store.flux.actions.rootRouteMatch();
-    });
+    this.__updateState();
+    rafAction(this, 'rootRouteMatch');
   },
   __repos: function(orgName) {
-    var store = this;
-    store.__updateState();
-    // Fluxxor doesn't want to trigger an action while processing another,
-    // so let's call it asynchronously.
-    window.requestAnimationFrame(function() {
-      store.flux.actions.reposRouteMatch(orgName);
-    });
+    this.__updateState();
+    rafAction(this, 'reposRouteMatch', [orgName]);
   }
 });
 
