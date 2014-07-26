@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --harmony index.js",
-    "build": "node node_modules/.bin/browserify -t reactify app/assets/javascripts/ui.js -o app/assets/javascripts/ui-bundle.js",
-    "watch": "node node_modules/.bin/watchify -t reactify app/assets/javascripts/ui.js -o app/assets/javascripts/ui-bundle.js"
+    "build": "node_modules/gulp/bin/gulp.js build",
+    "watch": "node_modules/gulp/bin/gulp.js watch"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,8 @@
     "dotenv": "^0.2.8",
     "envify": "^1.2.1",
     "fluxxor": "^1.2.1",
+    "gulp": "^3.8.6",
+    "gulp-util": "^3.0.0",
     "koa-logger": "^1.2.1",
     "koa-mount": "^1.3.0",
     "koa-passport": "^0.4.0",
@@ -38,6 +40,7 @@
     "react": "^0.10.0",
     "react-async": "^0.9.4",
     "reactify": "^0.13.1",
+    "vinyl-source-stream": "^0.1.1",
     "watchify": "^0.10.2",
     "when": "^3.2.3"
   }
