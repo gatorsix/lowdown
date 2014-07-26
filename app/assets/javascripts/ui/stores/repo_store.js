@@ -2,6 +2,7 @@
 
 var Fluxxor = require('fluxxor');
 var update = require('react/lib/update');
+var emptyObj = require('react/lib/emptyObject');
 
 var GH = new Octokat({
   token: window.TOKEN
@@ -22,12 +23,13 @@ function handleRepoRetrieval(store) {
 
 var RepoStore = Fluxxor.createStore({
   actions: {
-    ROUTER_MATCH_REPOS: 'handleReposRoute'
+    ROUTER_MATCH_REPOS: 'fetchRepos'
   },
   initialize: function() {
     this.repos = [];
+    this.repo = emptyObj;
   },
-  handleReposRoute: function() {
+  fetchRepos: function() {
     var store = this;
     store.waitFor(['OrgStore'], function(orgStore) {
       var action;

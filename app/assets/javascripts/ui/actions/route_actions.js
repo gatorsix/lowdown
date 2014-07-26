@@ -7,8 +7,8 @@ var RouteActions = {
   rootRouteMatch: function() {
     this.dispatch('ROUTER_MATCH_ROOT');
   },
-  reposRouteMatch: function(org) {
-    this.dispatch('ROUTER_MATCH_REPOS', org);
+  reposRouteMatch: function(orgName) {
+    this.dispatch('ROUTER_MATCH_REPOS', orgName);
   },
   navigateTo: function(path) {
     this.dispatch('ROUTER_NAVIGATE_TO', path);

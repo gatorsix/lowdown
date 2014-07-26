@@ -19,8 +19,8 @@ var OrgStore = Fluxxor.createStore({
     this.current = payload.defaultOrg;
     this.emit('change');
   },
-  handleReposRoute: function(orgName) {
-    var org = _.find(this.orgs, {login:orgName});
+  handleReposRoute: function(payload) {
+    var org = _.find(this.orgs, {login:payload.orgName});
     this.current = org;
     this.emit('change');
   },

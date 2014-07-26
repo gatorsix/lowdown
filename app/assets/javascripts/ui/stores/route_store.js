@@ -6,9 +6,11 @@ var emptyObj = require('react/lib/emptyObject');
 
 // Fluxxor doesn't want to trigger an action while processing another,
 // so let's call it asynchronously.
-function rafAction(store, actionName, args) {
+function rafAction(store, actionName, payload) {
+  var action = store.flux.actions[actionName];
+  if(!action) return console.warn('Cannot find action "%s"', actionName);
   window.requestAnimationFrame(function() {
-    store.flux.actions[actionName].apply(store, args);
+    action.apply(store, [payload]);
   });
 }
 
@@ -73,7 +75,7 @@ var RouteStore = Fluxxor.createStore({
   },
   __repos: function(orgName) {
     this.__updateState();
-    rafAction(this, 'reposRouteMatch', [orgName]);
+    rafAction(this, 'reposRouteMatch', {orgName:orgName});
   }
 });
 
