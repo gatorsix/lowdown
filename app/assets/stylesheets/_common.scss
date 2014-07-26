@@ -1,0 +1,12 @@
+html {
+  box-sizing: border-box;
+  font-family: 'Helvetica', sans-serif;
+}
+
+* {
+  &,
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}

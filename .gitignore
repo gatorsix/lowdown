@@ -4,3 +4,4 @@ tmp
 node_modules
 npm-debug.log
 ui-bundle.js
+app/assets/stylesheets/*.css
