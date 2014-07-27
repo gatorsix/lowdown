@@ -25,7 +25,7 @@ var user = gh.me.fetch().then(function(user) {
   return gh.me.orgs.fetch().then(function(orgs) {
     orgs.unshift(pseudoUserOrg);
     React.renderComponent(
-      App({ user:user, flux:flux, orgs:orgs }),
+      App({ user:user, flux:flux, orgs:orgs, notifications:[] }),
       document.getElementById('ui')
     );
   });

@@ -8,20 +8,24 @@ var FluxMixin = Fluxxor.FluxMixin(React);
 var FluxChildMixin = Fluxxor.FluxChildMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
+var Notifications = require('./notifications.jsx');
+
 var App = React.createClass({
   propTypes: {
     user: React.PropTypes.object.isRequired,
     flux: React.PropTypes.object.isRequired,
     orgs: React.PropTypes.array.isRequired,
+    notifications: React.PropTypes.array.isRequired
   },
   getStateFromFlux: function() {
     var flux = this.getFlux();
     return {
       orgs: flux.store('OrgStore').getState(),
-      repos: flux.store('RepoStore').getState()
+      repos: flux.store('RepoStore').getState(),
+      notifications: flux.store('NotificationStore').getState()
     }
   },
-  mixins: [FluxMixin, StoreWatchMixin('OrgStore','RepoStore','RouteStore')],
+  mixins: [FluxMixin, StoreWatchMixin('NotificationStore','OrgStore','RepoStore','RouteStore')],
   componentWillMount: function() {
     var orgs = this.props.orgs;
 
@@ -66,7 +70,7 @@ var App = React.createClass({
           </ul>
         </nav>
         <main className="ld-main">
-          templates
+          <Notifications notifications={this.state.notifications.all}/>
         </main>
       </article>
     );
