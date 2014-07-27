@@ -39,7 +39,7 @@
     "lodash": "^2.4.1",
     "octokat": "octokat.js",
     "passport-github": "^0.1.5",
-    "react": "^0.10.0",
+    "react": "^0.11.0",
     "reactify": "^0.13.1",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "^0.10.2",
