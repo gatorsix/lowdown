@@ -1,1 +1,13 @@
 @import 'common';
+
+.ld-app {
+  display: flex;
+}
+
+.ld-nav {
+  font-size: $font-size-base - 4;
+}
+
+.ld-main {
+  flex: 1;
+}

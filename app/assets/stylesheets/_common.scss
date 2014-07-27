@@ -1,3 +1,5 @@
+@import 'variables';
+
 html {
   box-sizing: border-box;
   font-family: 'Helvetica', sans-serif;
@@ -9,4 +11,8 @@ html {
   &:after {
     box-sizing: inherit;
   }
+}
+
+body {
+  font-size: 16px;
 }

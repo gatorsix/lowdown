@@ -38,32 +38,37 @@ var App = React.createClass({
   },
   render: function() {
     return (
-      <div>
-        <a href="/">home</a>
-        <h3>Organizations</h3>
-        <div>current: {this.state.orgs.current.login}</div>
-        <ul>
-          {this.state.orgs.all.map(function(org) {
-            return (
-              <li key={org.id}>
-                <a href={'/orgs/'+org.login+'/repos'}>{org.login}</a>
-              </li>
-            );
-          })}
-        </ul>
+      <article className="ld-app">
+        <nav className="ld-nav">
+          <a href="/">home</a>
+          <h3>Organizations</h3>
+          <div>current: {this.state.orgs.current.login}</div>
+          <ul>
+            {this.state.orgs.all.map(function(org) {
+              return (
+                <li key={org.id}>
+                  <a href={'/orgs/'+org.login+'/repos'}>{org.login}</a>
+                </li>
+              );
+            })}
+          </ul>
 
-        <h3>Repositories</h3>
-        <div>count: {this.state.repos.all.length}</div>
-        <ul>
-          {this.state.repos.all.map(function(repo) {
-            return (
-              <li key={repo.id}>
-                <a href={'/'}>{repo.name}</a>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+          <h3>Repositories</h3>
+          <div>count: {this.state.repos.all.length}</div>
+          <ul>
+            {this.state.repos.all.map(function(repo) {
+              return (
+                <li key={repo.id}>
+                  <a href={'/'}>{repo.name}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+        <main className="ld-main">
+          templates
+        </main>
+      </article>
     );
   }
 })
