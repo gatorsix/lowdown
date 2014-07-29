@@ -44,7 +44,12 @@ var App = React.createClass({
   render: function() {
     return (
       <article className="ld-app">
-        <Navigation orgs={this.state.orgs.all} currentOrg={this.state.orgs.current} repos={this.state.repos.all}/>
+        <Navigation
+          orgs={this.state.orgs.all}
+          currentOrg={this.state.orgs.current}
+          repos={this.state.repos.all}
+          currentRepo={this.state.repos.current}
+        />
         <main className="ld-main">
           <Notifications notifications={this.state.notifications.all}/>
         </main>

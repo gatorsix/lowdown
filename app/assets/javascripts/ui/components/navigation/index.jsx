@@ -13,13 +13,14 @@ var Navigation = React.createClass({
   propTypes: {
     currentOrg: React.PropTypes.object.isRequired,
     orgs: React.PropTypes.array.isRequired,
+    currentRepo: React.PropTypes.object.isRequired,
     repos: React.PropTypes.array.isRequired
   },
   render: function() {
     return (
       <nav className="ld-nav">
         <Organizations orgs={this.props.orgs} currentOrg={this.props.currentOrg}/>
-        <Repositories repos={this.props.repos}/>
+        <Repositories repos={this.props.repos} currentRepo={this.props.currentRepo}/>
       </nav>
     );
   }

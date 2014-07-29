@@ -27,7 +27,7 @@ var RepoStore = Fluxxor.createStore({
   },
   initialize: function() {
     this.repos = [];
-    this.repo = emptyObj;
+    this.current = emptyObj;
   },
   fetchRepos: function() {
     var store = this;
@@ -45,7 +45,8 @@ var RepoStore = Fluxxor.createStore({
   },
   getState: function() {
     return {
-      all: this.repos
+      all: this.repos,
+      current: this.current
     }
   }
 });

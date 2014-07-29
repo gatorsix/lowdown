@@ -4,12 +4,14 @@ var React = require('react');
 
 var Repositories = React.createClass({
   propTypes: {
+    currentRepo: React.PropTypes.object.isRequired,
     repos: React.PropTypes.array.isRequired
   },
   render: function() {
     return (
       <div>
         <h3>Repositories</h3>
+        <div>current: {this.props.currentRepo.name}</div>
         <div>count: {this.props.repos.length}</div>
         <ul>
           {this.props.repos.map(function(repo) {
