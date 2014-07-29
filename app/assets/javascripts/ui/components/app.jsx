@@ -8,6 +8,7 @@ var FluxMixin = Fluxxor.FluxMixin(React);
 var FluxChildMixin = Fluxxor.FluxChildMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
 
+var Navigation = require('./navigation/index.jsx');
 var Notifications = require('./notifications.jsx');
 
 var App = React.createClass({
@@ -43,32 +44,7 @@ var App = React.createClass({
   render: function() {
     return (
       <article className="ld-app">
-        <nav className="ld-nav">
-          <a href="/">home</a>
-          <h3>Organizations</h3>
-          <div>current: {this.state.orgs.current.login}</div>
-          <ul>
-            {this.state.orgs.all.map(function(org) {
-              return (
-                <li key={org.id}>
-                  <a href={'/orgs/'+org.login+'/repos'}>{org.login}</a>
-                </li>
-              );
-            })}
-          </ul>
-
-          <h3>Repositories</h3>
-          <div>count: {this.state.repos.all.length}</div>
-          <ul>
-            {this.state.repos.all.map(function(repo) {
-              return (
-                <li key={repo.id}>
-                  <a href={'/'}>{repo.name}</a>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+        <Navigation orgs={this.state.orgs.all} currentOrg={this.state.orgs.current} repos={this.state.repos.all}/>
         <main className="ld-main">
           <Notifications notifications={this.state.notifications.all}/>
         </main>
