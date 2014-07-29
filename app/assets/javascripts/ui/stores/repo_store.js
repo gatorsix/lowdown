@@ -1,47 +1,42 @@
 'use strict';
 
+var _ = require('lodash');
 var Fluxxor = require('fluxxor');
 var update = require('react/lib/update');
 var emptyObj = require('react/lib/emptyObject');
+var emptyAry = [];
 
-var GH = new Octokat({
+var gh = new Octokat({
   token: window.TOKEN
 });
 
-function handleRepoRetrieval(store) {
-  return function(result) {
-    store.repos = update(store.repos, {
-      $push: result
-    });
-    store.emit('change');
+var handleRepoRetrieval = _.curry(function(store, result) {
+  store.repos = update(store.repos, {
+    $push: result
+  });
+  store.emit('change');
 
-    if(result.nextPage) {
-      result.nextPage().then(handleRepoRetrieval(store));
-    }
+  if(result.nextPage) {
+    result.nextPage().then(handleRepoRetrieval(store));
   }
-}
+});
 
 var RepoStore = Fluxxor.createStore({
   actions: {
-    ROUTER_MATCH_REPOS: 'fetchRepos'
+    REPOS_FETCH_ALL_USER: 'fetchAllUserRepos',
+    REPOS_FETCH_ALL_ORG: 'fetchAllOrgRepos'
   },
   initialize: function() {
-    this.repos = [];
+    this.repos = emptyAry;
     this.current = emptyObj;
   },
-  fetchRepos: function() {
-    var store = this;
-    store.waitFor(['OrgStore'], function(orgStore) {
-      var action;
-      var org = orgStore.getState().current;
-      store.repos = [];
-      if(org.id === -1) {
-        action = GH.me.repos.fetch();
-      } else {
-        action = GH.orgs(org.login).repos.fetch();
-      }
-      action.then(handleRepoRetrieval(store));
-    });
+  fetchAllUserRepos: function(payload) {
+    this.repos = emptyAry;
+    gh.me.repos.fetch().then(handleRepoRetrieval(this));
+  },
+  fetchAllOrgRepos: function(payload) {
+    this.repos = emptyAry;
+    gh.orgs(payload.orgName).repos.fetch().then(handleRepoRetrieval(this));
   },
   getState: function() {
     return {

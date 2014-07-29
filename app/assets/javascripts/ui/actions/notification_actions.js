@@ -1,8 +1,8 @@
 'use strict';
 
 var NotiActions = {
-  seedNotifications: function() {
-    return this.dispatch('NOTIFICATIONS_SEED', {});
+  fetchRepoNotifications: function(owner, repoName) {
+    return this.dispatch('NOTIFICATIONS_FETCH_REPO', { owner:owner, repoName:repoName });
   }
 };
 

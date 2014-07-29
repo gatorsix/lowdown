@@ -3,33 +3,31 @@
 var Fluxxor = require('fluxxor');
 var _ = require('lodash');
 var emptyObj = require('react/lib/emptyObject');
-var OrgActions = require('../actions/org_actions');
+var UserActions = require('../actions/github_user_actions');
 
 var gh = new Octokat({
   token: window.TOKEN
 });
 
-var OrgStore = Fluxxor.createStore({
+var GithubUserStore = Fluxxor.createStore({
   actions: {
-    ORGS_FETCH_ALL: 'fetchAllOrgs'
+    GH_USER_FETCH_CURRENT: 'fetchCurrentUser'
   },
   initialize: function() {
-    this.orgs = [];
     this.current = emptyObj;
   },
-  fetchAllOrgs: function() {
+  fetchCurrentUser: function(user) {
     var store = this;
-    gh.me.orgs.fetch().then(function(orgs) {
-      store.orgs = orgs;
+    gh.me.fetch().then(function(user) {
+      store.current = user;
       store.emit('change');
     });
   },
   getState: function() {
     return {
-      all: this.orgs,
       current: this.current
     }
   }
 });
 
-module.exports = OrgStore;
+module.exports = GithubUserStore;

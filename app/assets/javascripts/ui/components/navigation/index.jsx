@@ -11,6 +11,7 @@ var Repositories = require('./repositories.jsx');
 
 var Navigation = React.createClass({
   propTypes: {
+    currentUser: React.PropTypes.object.isRequired,
     currentOrg: React.PropTypes.object.isRequired,
     orgs: React.PropTypes.array.isRequired,
     currentRepo: React.PropTypes.object.isRequired,
@@ -19,8 +20,16 @@ var Navigation = React.createClass({
   render: function() {
     return (
       <nav className="ld-nav">
-        <Organizations orgs={this.props.orgs} currentOrg={this.props.currentOrg}/>
-        <Repositories repos={this.props.repos} currentRepo={this.props.currentRepo}/>
+        <Organizations
+          currentUser={this.props.currentUser}
+          orgs={this.props.orgs}
+          currentOrg={this.props.currentOrg}
+        />
+        <Repositories
+          currentUser={this.props.currentUser}
+          repos={this.props.repos}
+          currentRepo={this.props.currentRepo}
+        />
       </nav>
     );
   }

@@ -7,13 +7,14 @@ var NotiActions = require('../actions/notification_actions');
 
 var NotiStore = Fluxxor.createStore({
   actions: {
-    NOTIFICATIONS_SEED: 'handleNotiSeed'
+    NOTIFICATIONS_FETCH_REPO: 'fetchRepoNotifications'
   },
   initialize: function() {
     this.notifications = [];
     this.current = emptyObj;
   },
-  handleNotiSeed: function(payload) {
+  fetchRepoNotifications: function(payload) {
+    console.info('fetch repo notifications for ', payload.owner, payload.repoName);
   },
   getState: function() {
     return {

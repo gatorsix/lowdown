@@ -7,44 +7,30 @@ var Fluxxor = require('fluxxor');
 var FluxMixin = Fluxxor.FluxMixin(React);
 var FluxChildMixin = Fluxxor.FluxChildMixin(React);
 var StoreWatchMixin = Fluxxor.StoreWatchMixin;
+var Router = require('../mixins/router');
 
 var Navigation = require('./navigation/index.jsx');
 var Notifications = require('./notifications.jsx');
 
 var App = React.createClass({
   propTypes: {
-    user: React.PropTypes.object.isRequired,
-    flux: React.PropTypes.object.isRequired,
-    orgs: React.PropTypes.array.isRequired,
-    notifications: React.PropTypes.array.isRequired
+    flux: React.PropTypes.object.isRequired
   },
   getStateFromFlux: function() {
     var flux = this.getFlux();
     return {
+      user: flux.store('GithubUserStore').getState(),
       orgs: flux.store('OrgStore').getState(),
       repos: flux.store('RepoStore').getState(),
       notifications: flux.store('NotificationStore').getState()
     }
   },
-  mixins: [FluxMixin, StoreWatchMixin('NotificationStore','OrgStore','RepoStore','RouteStore')],
-  componentWillMount: function() {
-    var orgs = this.props.orgs;
-
-    this.getFlux().actions.seedOrgs(orgs, orgs[0]);
-    this.getFlux().actions.initRouter();
-  },
-  componentDidMount: function() {
-    this.getDOMNode().addEventListener('click', this.handleClick);
-  },
-  handleClick: function(e) {
-    if(e.target.rel === 'external') return;
-    e.preventDefault();
-    this.getFlux().actions.navigateTo(e.target.href);
-  },
+  mixins: [Router, FluxMixin, StoreWatchMixin('GithubUserStore','NotificationStore','OrgStore','RepoStore')],
   render: function() {
     return (
       <article className="ld-app">
         <Navigation
+          currentUser={this.state.user.current}
           orgs={this.state.orgs.all}
           currentOrg={this.state.orgs.current}
           repos={this.state.repos.all}
@@ -56,6 +42,6 @@ var App = React.createClass({
       </article>
     );
   }
-})
+});
 
 module.exports = App;

@@ -1,8 +1,8 @@
 'use strict';
 
 var OrgActions = {
-  seedOrgs: function(orgs, defaultOrg) {
-    return this.dispatch('ORGS_SEED', {orgs:orgs, defaultOrg:defaultOrg});
+  fetchAllOrgs: function() {
+    return this.dispatch('ORGS_FETCH_ALL');
   }
 };
 

@@ -1,8 +1,11 @@
 'use strict';
 
 var RepoActions = {
-  refreshAllRepos: function() {
-    this.dispatch('REPOS_REFRESH_ALL');
+  fetchAllUserRepos: function() {
+    this.dispatch('REPOS_FETCH_ALL_USER');
+  },
+  fetchAllOrgRepos: function(orgName) {
+    this.dispatch('REPOS_FETCH_ALL_ORG', { orgName:orgName });
   }
 };
 
